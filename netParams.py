@@ -1,6 +1,9 @@
 '''
 set up network parameters 
 '''
+import sys 
+sys.path.append('/Applications/NEURON-7.7/nrn/lib/python')
+
 
 from netpyne import specs, sim
 
@@ -9,12 +12,19 @@ try:
 except:
 	from cfg import cfg  # if no simConfig in parent module, import directly from cfg module
 
+
+
+
 # Network parameters
 netParams = specs.NetParams()  # object of class NetParams to store the network parameters
 
 ## Population parameters
 netParams.popParams['S'] = {'cellType': 'PYR', 'numCells': 20, 'cellModel': 'HH'}
 netParams.popParams['M'] = {'cellType': 'PYR', 'numCells': 20, 'cellModel': 'HH'}
+netParams.popParams['Dummy_py'] = {'cellType': 'detailed_py', 'numCells': 1, 'cellModel': 'HH'}
+#netParams.popParams['Dummy_hoc'] = {'cellType': 'detailed_hoc', 'numCells': 1, 'cellModel': 'blank'}
+
+
 
 ## Cell property rules
 
@@ -23,6 +33,12 @@ cellRule['secs']['soma'] = {'geom': {}, 'mechs': {}}  	# 													# soma par
 cellRule['secs']['soma']['geom'] = {'diam': 18.8, 'L': 18.8, 'Ra': 123.0}  									# soma geometry
 cellRule['secs']['soma']['mechs']['hh'] = {'gnabar': 0.12, 'gkbar': 0.036, 'gl': 0.003, 'el': -70}  		# soma hh mechanism
 netParams.cellParams['PYRrule'] = cellRule  												# add dict to list of cell params
+
+
+cellRule = netParams.importCellParams(label = 'Dummy_py', conds = {'pop' : 'Dummy_py'}, fileName = 'cell_morphology/CA_229.py', cellName = 'MakeCell', importSynMechs=True)
+#cellRule = netParams.importCellParams(label = 'Dummy_hoc', conds = {'pop' : 'Dummy_hoc'}, fileName = 'cell_morphology/CA_229.hoc', cellName = '', importSynMechs=False)
+
+
 
 ## Synaptic mechanism parameters
 netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.synMechTau2, 'e': 0}  # excitatory synaptic mechanism
