@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jul  2 16:30:54 2019
-
-@author: adna.dumitrescu
-"""
 
 import sys 
 sys.path.append('/Applications/NEURON-7.7/nrn/lib/python')
@@ -31,5 +24,5 @@ fig = plt.figure()
 ax = plt.axes(projection='3d')
 secs=list(h.allsec());
 axon=h.Section(name='axon')
-axon=[h.Section(name='axon[%d]' % i) for i in range(1,5)]
+axon=[h.Section(name='axon[%d]' % i) for i in range(1,18)]
 morphology.shapeplot(h, ax, axon)
