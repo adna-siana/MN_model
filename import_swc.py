@@ -2,8 +2,6 @@
 import sys 
 sys.path.append('/Applications/NEURON-7.7/nrn/lib/python')
 
-
-
 from netpyne.support import morphology
 from neuron import h
 import matplotlib.pyplot as plt
