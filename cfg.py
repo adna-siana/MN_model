@@ -1,3 +1,5 @@
+# this is the configuration file for what you want to record and analyse 
+
 from netpyne import specs
 
 # Simulation options

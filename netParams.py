@@ -39,7 +39,6 @@ cellRule = netParams.importCellParams(label = 'Dummy_py', conds = {'pop' : 'Dumm
 #cellRule = netParams.importCellParams(label = 'Dummy_hoc', conds = {'pop' : 'Dummy_hoc'}, fileName = 'cell_morphology/CA_229.hoc', cellName = '', importSynMechs=False)
 
 
-
 ## Synaptic mechanism parameters
 netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.synMechTau2, 'e': 0}  # excitatory synaptic mechanism
 

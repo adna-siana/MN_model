@@ -1,3 +1,5 @@
+#this file runs the simulation of the network 
+
 import sys 
 sys.path.append('/Applications/NEURON-7.7/nrn/lib/python')
 
