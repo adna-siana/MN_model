@@ -71,4 +71,6 @@ def add_biophys_dend(dend):
         
         
         
-        
+add_biophys_soma (soma)
+add_biophys_axon (axon)
+       
