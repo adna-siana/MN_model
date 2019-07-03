@@ -56,16 +56,19 @@ for sec in secs:
     #self.add_biophys
 
     #give the cell biphys props
-def add_biophys(soma):       
+def add_biophys_soma(soma):       
     for sec in soma:
         sec.insert('hh')
         #sec.insert('na')
     
-def add_biophys(axon):   
+def add_biophys_axon(axon):   
     for sec in axon:
         sec.insert('hh')
         
-def add_biophys(dend):       
+def add_biophys_dend(dend):       
     for sec in dend:
         sec.insert('pas')
+        
+        
+        
         
