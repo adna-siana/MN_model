@@ -44,7 +44,7 @@ netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.syn
 #netParams.stimSourceParams['bkg'] = {'type': 'NetStim', 'rate': 10, 'noise': 0.5}#intrinsic noise is also included
 #netParams.stimTargetParams['bkg->PYR'] = {'source': 'bkg', 'conds': {'cellType': 'PYR'}, 'weight': 0.01, 'delay': 5, 'synMech': 'exc'}
 
-netParams.stimSourceParams['pulse'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.2} #ms  nA
+netParams.stimSourceParams['pulse'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.4} #ms  nA
 netParams.stimTargetParams['pulse->MN'] = {'source': 'pulse', 'conds': {'cellType': 'DET'}, 'sec':'soma_0', 'loc':0.5}
 
 

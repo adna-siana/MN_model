@@ -68,17 +68,17 @@ class TC_cell():
     #give the cell biphys props
     def add_biophys_soma(self):       
         for sec in soma:
-            #sec.insert('hh')
-            sec.insert('na')
-            sec.insert('kv')
+            sec.insert('hh')
+            #sec.insert('na')
+            #sec.insert('kv')
             
         #sec.insert('na')
     
     def add_biophys_axon(self):   
         for sec in axon:
-            #sec.insert('hh')
-            sec.insert('na')
-            sec.insert('kv')
+            sec.insert('hh')
+            #sec.insert('na')
+            #ßsec.insert('kv')
         
     #def add_biophys_dend(self):       
       #  for sec in dend:
