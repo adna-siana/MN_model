@@ -10,10 +10,6 @@ cell imported from this link: http://neuromorpho.org/neuron_info.jsp?neuron_name
 2dpf CaP MN 
 NeuroMorpho.Org ID : 	NMO_09367
 '''
-import sys 
-sys.path.append('/Applications/NEURON-7.7/nrn/lib/python')
-
-
 
 from netpyne.support import morphology
 from netpyne import sim
@@ -63,6 +59,7 @@ class TC_cell():
             self.add_biophys_axon()
             self.add_biophys_soma()
             #self.add_biophys_dend()
+            self.add_biophys_all()
             #self.getmorph()
             #self.getset()
     
@@ -71,18 +68,28 @@ class TC_cell():
     #give the cell biphys props
     def add_biophys_soma(self):       
         for sec in soma:
-            sec.insert('hh')
+            #sec.insert('hh')
+            sec.insert('na')
+            sec.insert('kv')
+            
         #sec.insert('na')
     
     def add_biophys_axon(self):   
         for sec in axon:
-            sec.insert('hh')
+            #sec.insert('hh')
+            sec.insert('na')
+            sec.insert('kv')
         
     #def add_biophys_dend(self):       
       #  for sec in dend:
        #     sec.insert('pas')
+    
+    def add_biophys_all(self):  
+        for sec in h.allsec():
+            sec.Ra = 100    # Axial resistance in Ohm * cm
+            sec.cm = 1      # Membrane capacitance in micro Farads / cm^2
         
-         
+        
     add_biophys_soma(soma)
     add_biophys_axon(axon)
     #add_biophys_dend(dend)
