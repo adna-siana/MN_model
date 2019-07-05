@@ -20,6 +20,8 @@ netParams = specs.NetParams()  # object of class NetParams to store the network 
 #netParams.popParams['M'] = {'cellType': 'PYR', 'numCells': 20, 'cellModel': 'HH'}
 
 netParams.popParams['import_swc'] = {'cellType': 'DET', 'numCells': 1, 'cellModel': 'HH'}
+netParams.popParams['MN2'] = {'cellType': 'PMN', 'numCells': 1, 'cellModel': 'HH'}
+
 #netParams.popParams['CA_229hoc'] = {'cellType': 'DET', 'numCells': 1, 'cellModel': 'blank'}
 
 
@@ -27,7 +29,9 @@ netParams.popParams['import_swc'] = {'cellType': 'DET', 'numCells': 1, 'cellMode
 
 ## Cell property rules
 
-cellRule = netParams.importCellParams(label = 'import_swc', conds = {'pop': 'import_swc'} , fileName = '/Users/adna.dumitrescu/Documents/Wyart_Postdoc/OIST_2019/MN_model/import_swc.py', cellName = 'MakeCell', importSynMechs=False)
+cellRule = netParams.importCellParams(label = 'import_swc', conds = {'pop': 'import_swc'} , fileName = '/Users/adna.dumitrescu/Documents/Wyart_Postdoc/OIST_2019/MN_model/import_swc.py', cellName = 'MakeCell', importSynMechs=True)
+cellRule = netParams.importCellParams(label = 'PMN', conds = {'pop': 'MN2'} , fileName = '/Users/adna.dumitrescu/Documents/Wyart_Postdoc/OIST_2019/MN_model/MN2_morphology.py', cellName = 'MakeCell', importSynMechs=True)
+
 #cellRule = netParams.importCellParams(label = 'CA_229hoc', conds = {'pop': 'CA_229hoc'} , fileName = 'cells/CA_229.hoc', cellName = '', importSynMechs=False)
 
 
@@ -44,16 +48,19 @@ netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.syn
 #netParams.stimSourceParams['bkg'] = {'type': 'NetStim', 'rate': 10, 'noise': 0.5}#intrinsic noise is also included
 #netParams.stimTargetParams['bkg->PYR'] = {'source': 'bkg', 'conds': {'cellType': 'PYR'}, 'weight': 0.01, 'delay': 5, 'synMech': 'exc'}
 
-netParams.stimSourceParams['pulse'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.4} #ms  nA
-netParams.stimTargetParams['pulse->MN'] = {'source': 'pulse', 'conds': {'cellType': 'DET'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimSourceParams['pulse1'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.4} #ms  nA
+netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':300, 'dur':10, 'amp':0.4} #ms  nA
+
+netParams.stimTargetParams['pulse1->MN'] = {'source': 'pulse1', 'conds': {'cellType': 'DET'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse2->MN2'] = {'source': 'pulse2', 'conds': {'cellType': 'PMN'}, 'sec':'soma_0', 'loc':0.5}
 
 
 
 ## Cell connectivity rules
-#netParams.connParams['S->M'] = { 	#  S -> M label
-	#'preConds': {'pop': 'S'}, 	# conditions of presyn cells
-	#'postConds': {'pop': 'M'}, # conditions of postsyn cells
-	#'probability': 0.5, 			# probability of connection
-	#'weight': cfg.connWeight, 		# synaptic weight
-	#'delay': 5,						# transmission delay (ms)
-	#'synMech': 'exc'}   			# synaptic mechanism
+netParams.connParams['MN1->MN2'] = { 	#  S -> M label
+	'preConds': {'pop': 'import_swc'}, 	# conditions of presyn cells
+	'postConds': {'pop': 'MN2'}, # conditions of postsyn cells
+	'probability': 0.6, 			# probability of connection
+	'weight': cfg.connWeight, 		# synaptic weight
+	'delay': 5,						# transmission delay (ms)
+	'synMech': 'exc'}   			# synaptic mechanism

@@ -8,7 +8,6 @@ from netpyne import specs
 
 # Simulation options
 cfg = specs.SimConfig()		# object of class SimConfig to store simulation configuration
-h.celsius = 300
 cfg.duration = 1000 			# Duration of the simulation, in ms
 cfg.dt = 0.025 				# Internal integration timestep to use
 cfg.verbose = True			# Show detailed messages
@@ -18,7 +17,7 @@ cfg.filename = 'MN_model_test'  # Set file output name
 cfg.saveJson = True 	
 cfg.printPopAvgRates = True
 cfg.analysis['plotRaster'] = {'saveFig': True} 			# Plot a raster
-cfg.analysis['plotTraces'] = {'include': [0], 'saveFig': True} 			# Plot recorded traces for this list of cells
+cfg.analysis['plotTraces'] = {'include': [0,1], 'saveFig': True} 			# Plot recorded traces for this list of cells
 # Variable parameters (used in netParams)
 cfg.synMechTau2 = 5
 cfg.connWeight = 0.01

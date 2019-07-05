@@ -87,7 +87,7 @@ class TC_cell():
     def add_biophys_all(self):  
         for sec in h.allsec():
             sec.Ra = 100    # Axial resistance in Ohm * cm
-            sec.cm = 1      # Membrane capacitance in micro Farads / cm^2
+            sec.cm = 0.01      # Membrane capacitance in micro Farads / cm^2
         
         
     add_biophys_soma(soma)
