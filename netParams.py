@@ -25,8 +25,6 @@ netParams.popParams['MN2'] = {'cellType': 'PMN', 'numCells': 1, 'cellModel': 'HH
 #netParams.popParams['CA_229hoc'] = {'cellType': 'DET', 'numCells': 1, 'cellModel': 'blank'}
 
 
-
-
 ## Cell property rules
 
 cellRule = netParams.importCellParams(label = 'import_swc', conds = {'pop': 'import_swc'} , fileName = '/Users/adna.dumitrescu/Documents/Wyart_Postdoc/OIST_2019/MN_model/import_swc.py', cellName = 'MakeCell', importSynMechs=True)
@@ -42,14 +40,15 @@ cellRule = netParams.importCellParams(label = 'PMN', conds = {'pop': 'MN2'} , fi
 #netParams.cellParams['PYRrule'] = cellRule  												# add dict to list of cell params
 
 ## Synaptic mechanism parameters, most of them get imported from somewhere else
-netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.synMechTau2, 'e': 0}  # excitatory synaptic mechanism
+#netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.synMechTau2, 'e': 0}  # excitatory synaptic mechanism
+netParams.synMechParams['gap'] = {'mod': 'ElectSyn', 'g': 0.000049999999999999996}  # excitatory synaptic mechanism
 
 # Stimulation parameters
 #netParams.stimSourceParams['bkg'] = {'type': 'NetStim', 'rate': 10, 'noise': 0.5}#intrinsic noise is also included
 #netParams.stimTargetParams['bkg->PYR'] = {'source': 'bkg', 'conds': {'cellType': 'PYR'}, 'weight': 0.01, 'delay': 5, 'synMech': 'exc'}
 
-netParams.stimSourceParams['pulse1'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.4} #ms  nA
-netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':300, 'dur':10, 'amp':0.4} #ms  nA
+netParams.stimSourceParams['pulse1'] = {'type': 'IClamp', 'del':200, 'dur':10, 'amp':0.004} #ms  nA
+netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':300, 'dur':10, 'amp':0.004} #ms  nA
 
 netParams.stimTargetParams['pulse1->MN'] = {'source': 'pulse1', 'conds': {'cellType': 'DET'}, 'sec':'soma_0', 'loc':0.5}
 netParams.stimTargetParams['pulse2->MN2'] = {'source': 'pulse2', 'conds': {'cellType': 'PMN'}, 'sec':'soma_0', 'loc':0.5}
@@ -60,7 +59,18 @@ netParams.stimTargetParams['pulse2->MN2'] = {'source': 'pulse2', 'conds': {'cell
 netParams.connParams['MN1->MN2'] = { 	#  S -> M label
 	'preConds': {'pop': 'import_swc'}, 	# conditions of presyn cells
 	'postConds': {'pop': 'MN2'}, # conditions of postsyn cells
-	'probability': 0.6, 			# probability of connection
-	'weight': cfg.connWeight, 		# synaptic weight
-	'delay': 5,						# transmission delay (ms)
-	'synMech': 'exc'}   			# synaptic mechanism
+	'weight': 200, 		# synaptic weight
+	'delay': 0.1,						# transmission delay (ms)
+	'synMech': 'gap',
+    'gapJunction': True,
+    'sec': 'soma',
+    'loc': 0.5,
+    'preSec': 'soma',
+    'preLoc': 0.5
+    }   			# synaptic mechanism
+
+
+     
+
+
+      
