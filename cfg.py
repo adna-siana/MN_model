@@ -14,10 +14,10 @@ cfg.verbose = True			# Show detailed messages
 cfg.recordTraces = {'V_soma':{'sec':'soma_0','loc':0.5,'var':'v'}}  # Dict with traces to record
 cfg.recordStep = 0.1 			# Step size in ms to save data (eg. V traces, LFP, etc)
 cfg.filename = 'MN_model_test'  # Set file output name
-cfg.saveJson = True 	
+cfg.saveJson = True
 cfg.printPopAvgRates = True
 cfg.analysis['plotRaster'] = {'saveFig': True} 			# Plot a raster
-cfg.analysis['plotTraces'] = {'include': [0,1,2], 'saveFig': True} 			# Plot recorded traces for this list of cells
+cfg.analysis['plotTraces'] = {'include': [0,1,2,3], 'saveFig': True} 			# Plot recorded traces for this list of cells
 # Variable parameters (used in netParams)
 cfg.synMechTau2 = 5
 cfg.connWeight = 0.01
