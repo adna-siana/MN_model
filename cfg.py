@@ -17,7 +17,7 @@ cfg.filename = 'MN_model_test'  # Set file output name
 cfg.saveJson = True 	
 cfg.printPopAvgRates = True
 cfg.analysis['plotRaster'] = {'saveFig': True} 			# Plot a raster
-cfg.analysis['plotTraces'] = {'include': [0,1], 'saveFig': True} 			# Plot recorded traces for this list of cells
+cfg.analysis['plotTraces'] = {'include': [0,1,2], 'saveFig': True} 			# Plot recorded traces for this list of cells
 # Variable parameters (used in netParams)
 cfg.synMechTau2 = 5
 cfg.connWeight = 0.01
