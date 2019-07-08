@@ -23,21 +23,25 @@ import neuron as nrn
 
 #load cell as mycell
 #    def getmorph(self):
-#myCell_1= morphology.Cell()
-#morphology.load(filename=os.path.join(wdir, 'MN1_morphology.swc'), cell=myCell_1)
+myCell_1= morphology.Cell()
+morphology.load(filename=os.path.join(wdir, 'MN1_morphology.swc'), cell=myCell_1)
  
-#cell1_secs=list(h.allsec())
+cell1_secs=list(h.allsec())
+
+lenght_1 = len (cell1_secs)
 
 myCell_2= morphology.Cell()
 morphology.load(filename=os.path.join(wdir, 'MN2_morphology.swc'), cell=myCell_2)
 
-cell2_secs=list(h.allsec()
+cell2_secs=list(h.allsec())
+del cell2_secs[0:lenght_1]
+
 
 #plot loaded cell
 fig = plt.figure()
 ax = plt.axes(projection='3d')
-morphology.shapeplot(h, ax, sections = cell2_secs, color='k' )
-#morphology.shapeplot(h, ax, sections = cell2_secs, color='b' )
+morphology.shapeplot(h, ax, sections = cell1_secs, color='k' )
+morphology.shapeplot(h, ax, sections = cell2_secs, color='b' )
 
 
 
