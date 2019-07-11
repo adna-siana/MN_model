@@ -43,34 +43,57 @@ cellRule = netParams.importCellParams(label = 'PMN4', conds = {'pop': 'MN4'} , f
 
 ## Synaptic mechanism parameters, most of them get imported from somewhere else
 netParams.synMechParams['exc'] = {'mod': 'Exp2Syn', 'tau1': 0.1, 'tau2': cfg.synMechTau2, 'e': 0}  # excitatory synaptic mechanism
-netParams.synMechParams['gap'] = {'mod': 'ElectSyn', 'g': 0.000049999999999999996}  # excitatory synaptic mechanism
+# original netParams.synMechParams['gap'] = {'mod': 'ElectSyn', 'g': 0.000049999999999999996}  # excitatory synaptic mechanism
+netParams.synMechParams['gap'] = {'mod': 'ElectSyn', 'g': 0.00000049999999999999996}  # excitatory synaptic mechanism
 
 # Stimulation parameters
 #netParams.stimSourceParams['bkg'] = {'type': 'NetStim', 'rate': 10, 'noise': 0.5}#intrinsic noise is also included
 #netParams.stimTargetParams['bkg->PYR'] = {'source': 'bkg', 'conds': {'cellType': 'PYR'}, 'weight': 0.01, 'delay': 5, 'synMech': 'exc'}
 
-netParams.stimSourceParams['pulse1'] = {'type': 'IClamp', 'del':200, 'dur':1, 'amp':0.2} #ms  nA
-netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':400, 'dur':1, 'amp':0.2} #ms  nA
-netParams.stimSourceParams['pulse3'] = {'type': 'IClamp', 'del':600, 'dur':1, 'amp':0.2} #ms  nA
-netParams.stimSourceParams['pulse4'] = {'type': 'IClamp', 'del':800, 'dur':1, 'amp':0.2} #ms  nA
+netParams.stimSourceParams['pulse1'] = {'type': 'IClamp', 'del':100, 'dur':5, 'amp':0.25} #ms  nA
+"""
+netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':200, 'dur':100, 'amp':0.25} #ms  nA
+netParams.stimSourceParams['pulse4'] = {'type': 'IClamp', 'del':140, 'dur':5, 'amp':0.25} #ms  nA
+netParams.stimSourceParams['pulse5'] = {'type': 'IClamp', 'del':150, 'dur':5, 'amp':0.30} #ms  nA
+netParams.stimSourceParams['pulse6'] = {'type': 'IClamp', 'del':160, 'dur':5, 'amp':0.35} #ms  nA
+netParams.stimSourceParams['pulse7'] = {'type': 'IClamp', 'del':170, 'dur':5, 'amp':0.40} #ms  nA
+"""
 
+
+"""
+netParams.stimSourceParams['pulse2'] = {'type': 'IClamp', 'del':200, 'dur':5, 'amp':0.25} #ms  nA
+netParams.stimSourceParams['pulse3'] = {'type': 'IClamp', 'del':300, 'dur':5, 'amp':0.25} #ms  nA
+netParams.stimSourceParams['pulse4'] = {'type': 'IClamp', 'del':400, 'dur':5, 'amp':0.25} #ms  nA
+"""
 
 netParams.stimTargetParams['pulse1->MN1'] = {'source': 'pulse1', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+#netParams.stimTargetParams['pulse2->MN1'] = {'source': 'pulse2', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+
+"""
+netParams.stimTargetParams['pulse3->MN1'] = {'source': 'pulse3', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse4->MN1'] = {'source': 'pulse4', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse5->MN1'] = {'source': 'pulse5', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse6->MN1'] = {'source': 'pulse6', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse7->MN1'] = {'source': 'pulse7', 'conds': {'cellType': 'PMN1'}, 'sec':'soma_0', 'loc':0.5}
+"""
+"""
 netParams.stimTargetParams['pulse2->MM2'] = {'source': 'pulse2', 'conds': {'cellType': 'PMN2'}, 'sec':'soma_0', 'loc':0.5}
 netParams.stimTargetParams['pulse3->MN3'] = {'source': 'pulse3', 'conds': {'cellType': 'PMN3'}, 'sec':'soma_0', 'loc':0.5}
-netParams.stimTargetParams['pulse3->MN4'] = {'source': 'pulse4', 'conds': {'cellType': 'PMN4'}, 'sec':'soma_0', 'loc':0.5}
+netParams.stimTargetParams['pulse4->MN4'] = {'source': 'pulse4', 'conds': {'cellType': 'PMN4'}, 'sec':'soma_0', 'loc':0.5}
+"""
+
 
 ## Cell connectivity rules
 netParams.connParams['MN1->MN2'] = { 	#  S -> M label
 	'preConds': {'pop': 'MN1'}, 	# conditions of presyn cells
 	'postConds': {'pop': 'MN2'}, # conditions of postsyn cells
-	'weight': 3, 		# synaptic weight
+	'weight': 2, 		# synaptic weight
 	'delay': 0.1,						# transmission delay (ms)
 	'synMech': 'gap',
     'gapJunction': True,
-    'sec': 'soma',
+    'sec': 'axon',
     'loc': 0.5,
-    'preSec': 'soma',
+    'preSec': 'axon',
     'preLoc': 0.5
     }   			# synaptic mechanism
 
@@ -78,7 +101,7 @@ netParams.connParams['MN1->MN3'] = { 	#  S -> M label
 	'preConds': {'pop': 'MN1'}, 	# conditions of presyn cells
 	'postConds': {'pop': 'MN3'}, # conditions of postsyn cells
 	'probability': 0.7 , 
-    'weight': 0.01, 		# synaptic weight
+    'weight': 0.001, 		# synaptic weight
 	'delay': 10,						# transmission delay (ms)
 	'synMech': 'exc',
     'sec': 'soma',

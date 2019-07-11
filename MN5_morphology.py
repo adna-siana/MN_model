@@ -71,35 +71,43 @@ class TC_cell():
             #self.getmorph()
             #self.getset()
     
-
+    
     #give the cell biphys props
     def add_biophys_soma(self):       
         for sec in soma:
             #sec.insert('hh')
-            sec.insert('na')
-            sec.insert('kv')
+            #sec.insert('na')
+            #sec.insert('kv')
+            sec.insert('nav1p6')
+            #sec.insert('nav1p1')
+            #sec.insert('kv1')
+            sec.insert('kv2')     
+           # sec.insert('leak')
+            sec.insert('pas')
             
         #sec.insert('na')
     
     def add_biophys_axon(self):   
         for sec in axon:
-            #sec.insert('hh')
-            sec.insert('na')
-            sec.insert('kv')
-        
-    def add_biophys_dend(self):       
-        for sec in dend:
+           # sec.insert('hh')
+            #sec.insert('na')
+            #sec.insert('kv')
+            sec.insert('nav1p1')
+            sec.insert('nav1p6')
+            sec.insert('kv1')
+            sec.insert('kv2')
+            #sec.insert('leak')
             sec.insert('pas')
     
     def add_biophys_all(self):  
         for sec in h.allsec():
-            sec.Ra = 100    # Axial resistance in Ohm * cm
-            sec.cm = 1      # Membrane capacitance in micro Farads / cm^2
+            sec.Ra = 10   # Axial resistance in Ohm * cm
+            sec.cm = 0.3      # Membrane capacitance in micro Farads / cm^2
         
         
     add_biophys_soma(soma)
     add_biophys_axon(axon)
-    add_biophys_dend(dend)
+    #add_biophys_dend(dend)
 
 
 def MakeCell():

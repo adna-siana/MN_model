@@ -36,7 +36,7 @@ morphology.load(filename=os.path.join(wdir, 'MN4_morphology.swc'), cell=myCell)
 #plot loaded cell
 fig = plt.figure()
 ax = plt.axes(projection='3d')
-morphology.shapeplot(h, ax)
+morphology.shapeplot(h, ax, color='m')
            
 #get the sections from the cell
 secs=list(h.allsec());
@@ -74,17 +74,29 @@ class TC_cell():
     #give the cell biphys props
     def add_biophys_soma(self):       
         for sec in soma:
-            sec.insert('hh')
+            #sec.insert('hh')
             #sec.insert('na')
             #sec.insert('kv')
+            sec.insert('nav1p6')
+            #sec.insert('nav1p1')
+            #sec.insert('kv1')
+            sec.insert('kv2')     
+           # sec.insert('leak')
+            sec.insert('pas')
             
         #sec.insert('na')
     
     def add_biophys_axon(self):   
         for sec in axon:
-            sec.insert('hh')
+           # sec.insert('hh')
             #sec.insert('na')
             #sec.insert('kv')
+            sec.insert('nav1p1')
+            sec.insert('nav1p6')
+            sec.insert('kv1')
+            sec.insert('kv2')
+            #sec.insert('leak')
+            sec.insert('pas')
         
     #def add_biophys_dend(self):       
         #for sec in dend:
@@ -92,8 +104,8 @@ class TC_cell():
     
     def add_biophys_all(self):  
         for sec in h.allsec():
-            sec.Ra = 100    # Axial resistance in Ohm * cm
-            sec.cm = 0.01      # Membrane capacitance in micro Farads / cm^2
+            sec.Ra = 10    # Axial resistance in Ohm * cm
+            sec.cm = 0.35      # Membrane capacitance in micro Farads / cm^2
         
         
     add_biophys_soma(soma)
